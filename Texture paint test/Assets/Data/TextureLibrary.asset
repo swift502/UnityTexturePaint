@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306415cd65c7b2843bd1b33f22a43883, type: 3}
+  m_Name: TextureLibrary
+  m_EditorClassIdentifier: 
+  textures:
+  - texture2D: {fileID: 2800000, guid: 0b91f3f6372a0ee42a97c3e53015c30a, type: 3}
+    sprite: {fileID: 21300000, guid: 9c0bc60fff432554e90829bb3d4c6d77, type: 3}
+  - texture2D: {fileID: 2800000, guid: c0a14508f37366d4a932166f5028b15f, type: 3}
+    sprite: {fileID: 21300000, guid: 491df838b45f75e4d823baf32785ffff, type: 3}
+  - texture2D: {fileID: 2800000, guid: 0a0f22c6cefe34f4799308af495229a5, type: 3}
+    sprite: {fileID: 21300000, guid: 55a90076d543eaf44ba61312fa929f82, type: 3}
+  - texture2D: {fileID: 2800000, guid: 02c49026421796d45a3cc3225c5a4e94, type: 3}
+    sprite: {fileID: 21300000, guid: 5d5cb85d95b44e24898432c88faf1605, type: 3}
+  - texture2D: {fileID: 2800000, guid: 22cd51b6ac5fd1441bfe6bca3bf98e97, type: 3}
+    sprite: {fileID: 21300000, guid: 3535c30a1792c4b4cab835dbde7e5138, type: 3}
+  - texture2D: {fileID: 2800000, guid: a46306c044662434a961efc11ff5d64f, type: 3}
+    sprite: {fileID: 21300000, guid: 19b0260272947dd4e8c42c6bf7f0caf1, type: 3}
+  - texture2D: {fileID: 2800000, guid: a17eb9f1500fdb04b8cdda130d1d381e, type: 3}
+    sprite: {fileID: 21300000, guid: e335bd7d88bec9d46904c8e1aa88f6f6, type: 3}
+  - texture2D: {fileID: 2800000, guid: 4ca40ef312cf9704e84b5767f9cd26f4, type: 3}
+    sprite: {fileID: 21300000, guid: c8fb8d273ef1c914fa6a0f2a931ad18f, type: 3}
+  - texture2D: {fileID: 2800000, guid: 0532a16a6d15e254aba19c0514db8ce6, type: 3}
+    sprite: {fileID: 21300000, guid: 25e15eb9645cd1e49904270315242a7b, type: 3}
+  - texture2D: {fileID: 2800000, guid: bf517b36d16dc84419a5484c7463aba6, type: 3}
+    sprite: {fileID: 21300000, guid: 3c3bccf165c26794595a2df28f05b7e6, type: 3}
+  - texture2D: {fileID: 2800000, guid: 2cb2f05e3fc7013478bac516cbe1841b, type: 3}
+    sprite: {fileID: 21300000, guid: 30eb60cf970100b4da8e0417a5d34f04, type: 3}
+  - texture2D: {fileID: 2800000, guid: 6a027f723185df4429876e27385e86d0, type: 3}
+    sprite: {fileID: 21300000, guid: ee0e13e9209d1374c8b78d5a868c1271, type: 3}
+  - texture2D: {fileID: 2800000, guid: 829fd68b7feb4324c9012b30b1f5c704, type: 3}
+    sprite: {fileID: 21300000, guid: 7295fa18741b11b43897ae4e30bc6986, type: 3}
+  - texture2D: {fileID: 2800000, guid: de3b03208f2cceb46a833066cb4e43a8, type: 3}
+    sprite: {fileID: 21300000, guid: c60ad07cdc91c6a4eb6e3869643784a1, type: 3}
+  - texture2D: {fileID: 2800000, guid: b0f776c0a6ec0494d8878a083ae42dd1, type: 3}
+    sprite: {fileID: 21300000, guid: 05f2bc00efd25ff4698b4409b5292db5, type: 3}
+  - texture2D: {fileID: 2800000, guid: 4f3b27358a048774bb2273791e5932b2, type: 3}
+    sprite: {fileID: 21300000, guid: 3dc09524649c7894b84ced8062cbca61, type: 3}
+  - texture2D: {fileID: 2800000, guid: e850e0f6a49170b47913ee6dca86185d, type: 3}
+    sprite: {fileID: 21300000, guid: 44d82125584d6344f8c6c91a1fa2f8ac, type: 3}
+  - texture2D: {fileID: 2800000, guid: 2b5574fb7c7864146822faa8a0f4ba5a, type: 3}
+    sprite: {fileID: 21300000, guid: cfba2aaffada76f4e952f588cd7f1b4e, type: 3}
+  - texture2D: {fileID: 2800000, guid: dfb02288e40e78c4fb85c6a8b16a5c65, type: 3}
+    sprite: {fileID: 21300000, guid: ca59e8429d4d23545854d8310fccffd1, type: 3}
+  - texture2D: {fileID: 2800000, guid: 1841aa357fded86469c5dc011eafa6c2, type: 3}
+    sprite: {fileID: 21300000, guid: 0eb97a79374e99a4dbde95821f231ac5, type: 3}

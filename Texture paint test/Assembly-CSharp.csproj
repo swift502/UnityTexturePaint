@@ -62,14 +62,44 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ScriptableObjects\SO_ShaderLibrary.cs" />
+    <Compile Include="Assets\ScriptableObjects\SO_TextureLibrary.cs" />
     <Compile Include="Assets\Scripts\Brush.cs" />
-    <Compile Include="Assets\Scripts\SO_TextureLibrary.cs" />
     <Compile Include="Assets\Scripts\TexPaintLayer.cs" />
     <Compile Include="Assets\Scripts\TexPaintTexture.cs" />
     <Compile Include="Assets\Scripts\TexturePaintManager.cs" />
-    <None Include="Assets\Shaders\1Texture.shader" />
-    <None Include="Assets\Shaders\3Textures.shader" />
-    <None Include="Assets\Shaders\2Textures.shader" />
+    <None Include="Assets\Shaders\10Layers.shader" />
+    <None Include="Assets\Shaders\20Layers.shader" />
+    <None Include="Assets\Shaders\5Layers.shader" />
+    <None Include="Assets\Shaders\29Layers.shader" />
+    <None Include="Assets\Shaders\16Layers.shader" />
+    <None Include="Assets\Shaders\32Layers.shader" />
+    <None Include="Assets\Shaders\18Layers.shader" />
+    <None Include="Assets\Shaders\3Layers.shader" />
+    <None Include="Assets\Shaders\8Layers.shader" />
+    <None Include="Assets\Shaders\19Layers.shader" />
+    <None Include="Assets\Shaders\25Layers.shader" />
+    <None Include="Assets\Shaders\1Layers.shader" />
+    <None Include="Assets\Shaders\30Layers.shader" />
+    <None Include="Assets\Shaders\14Layers.shader" />
+    <None Include="Assets\Shaders\7Layers.shader" />
+    <None Include="Assets\Shaders\24Layers.shader" />
+    <None Include="Assets\Shaders\6Layers.shader" />
+    <None Include="Assets\Shaders\11Layers.shader" />
+    <None Include="Assets\Shaders\31Layers.shader" />
+    <None Include="Assets\Shaders\28Layers.shader" />
+    <None Include="Assets\Shaders\12Layers.shader" />
+    <None Include="Assets\Shaders\21Layers.shader" />
+    <None Include="Assets\Shaders\23Layers.shader" />
+    <None Include="Assets\Shaders\2Layers.shader" />
+    <None Include="Assets\Shaders\17Layers.shader" />
+    <None Include="Assets\Shaders\27Layers.shader" />
+    <None Include="Assets\Shaders\4Layers.shader" />
+    <None Include="Assets\Shaders\26Layers.shader" />
+    <None Include="Assets\Shaders\15Layers.shader" />
+    <None Include="Assets\Shaders\22Layers.shader" />
+    <None Include="Assets\Shaders\9Layers.shader" />
+    <None Include="Assets\Shaders\13Layers.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Program Files/Unity projects/Texture paint test/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
