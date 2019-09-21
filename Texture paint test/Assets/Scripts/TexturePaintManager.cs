@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class TexturePaintManager : MonoBehaviour
 {
+    //Public
     public SO_TextureLibrary textureLibrary;
-    public SO_ShaderLibrary shaderLibrary;
 
     public TexPaintLayer layerPrefab;
     public TexPaintTexture texturePrefab;
@@ -20,13 +19,13 @@ public class TexturePaintManager : MonoBehaviour
     [HideInInspector]
     public TexPaintTexture activeTexture;
 
+    // Private
     private GameObject groundObject;
     private Material groundMaterial;
 
-    int counter = 0;
-    bool paintingAdd = false;
-    bool paintingSubstract = false;
-    Vector3 lastMouse;
+    private bool paintingAdd = false;
+    private bool paintingSubstract = false;
+    private Vector3 lastMouse;
 
     void Start()
     {
@@ -52,6 +51,7 @@ public class TexturePaintManager : MonoBehaviour
 
     void Update()
     {
+        // Bind mouse events
         if (Input.GetMouseButtonDown(0))
         {
             paintingAdd = true;
@@ -65,82 +65,25 @@ public class TexturePaintManager : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(1)) paintingSubstract = false;
 
+        // Painting
         if ((paintingAdd || paintingSubstract) && !(paintingAdd && paintingSubstract))
         {
             Vector3 currentMouse = Input.mousePosition;
             Vector3 mouseDelta = currentMouse - lastMouse;
+
+            // Fill in large mouse movement gaps
             for(float t = 0f; t < 1f; t += 0.025f / (mouseDelta.magnitude / Screen.width))
             {
                 Paint(Vector3.Lerp(lastMouse, currentMouse, t));
             }
+
             lastMouse = currentMouse;
         }
     }
 
-    private void Paint(Vector3 mousePosition)
-    {
-        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mousePosition);
-        Bounds bounds = groundObject.GetComponent<Renderer>().bounds;
-        Vector2 mouse01 = new Vector2(
-            (mouseWorld.x - bounds.min.x) / (bounds.max.x - bounds.min.x),
-            (mouseWorld.z - bounds.min.z) / (bounds.max.z - bounds.min.z)
-        );
-
-        float brushRadius = 0.15f;
-        Color[] paintArray = activeLayer.mask.GetPixels();
-        for (int i = 0; i < paintArray.Length; i++)
-        {
-            Vector2 pixel = new Vector2(1 - (i % 128) / 128f, 1 - (i / 128) / 128f);
-            float grayscale = Mathf.Pow(Mathf.Min((brushRadius - Mathf.Min(Vector2.Distance(mouse01, pixel), brushRadius)) * (1 / brushRadius) * 1.3f, 1f), 1f);
-            if(paintingAdd)
-            {
-                paintArray[i] = MaxColor(paintArray[i], ColorFromGrayscale(grayscale));
-            }
-            if(paintingSubstract)
-            {
-                paintArray[i] = MinColor(paintArray[i], ColorFromGrayscale(1-grayscale));
-            }
-        }
-        activeLayer.mask.SetPixels(paintArray);
-        activeLayer.mask.Apply();
-    }
-
-    private int GetNumberOfLayers()
-    {
-        return layersList.transform.childCount;
-    }
-
-    private void RefreshTerrainShader()
-    {
-        groundMaterial.shader = Shader.Find("Custom/" + GetNumberOfLayers() + "Layers");
-    }
-
-    private Color ColorFromGrayscale(float grayscale)
-    {
-        return new Color(grayscale, grayscale, grayscale);
-    }
-
-    private Color MaxColor(Color color1, Color color2)
-    {
-        return new Color(
-            Mathf.Max(color1.r, color2.r),
-            Mathf.Max(color1.g, color2.g),
-            Mathf.Max(color1.b, color2.b)
-        );
-    }
-
-    private Color MinColor(Color color1, Color color2)
-    {
-        return new Color(
-            Mathf.Min(color1.r, color2.r),
-            Mathf.Min(color1.g, color2.g),
-            Mathf.Min(color1.b, color2.b)
-        );
-    }
-
     public void AddLayer()
     {
-        AddLayer("Layer" + (++counter), false);
+        AddLayer("Layer" + (GetNumberOfLayers() + 1), false);
     }
 
     public void AddLayer(string name, bool locked = false)
@@ -173,6 +116,18 @@ public class TexturePaintManager : MonoBehaviour
         RefreshTerrainShader();
     }
 
+    public void MoveActiveLayerUp()
+    {
+        ShiftLayer(activeLayer, -1);
+    }
+
+    public void MoveActiveLayerDown()
+    {
+        ShiftLayer(activeLayer, +1);
+    }
+
+    // Currently shiftAmount needs to be 1 or -1
+    // Larger / smaller values won't work properly
     public void ShiftLayer(TexPaintLayer layer, int shiftAmount)
     {
         if (layer.locked) return;
@@ -185,7 +140,7 @@ public class TexturePaintManager : MonoBehaviour
             TexPaintLayer otherLayer = layersList.transform.GetChild(newIndex).GetComponent<TexPaintLayer>();
             if (otherLayer.locked) return;
 
-            // Move
+            // Move the layer
             layer.transform.SetSiblingIndex(newIndex);
 
             // Update terrain material
@@ -197,14 +152,69 @@ public class TexturePaintManager : MonoBehaviour
         }
     }
 
-    public void MoveActiveLayerUp()
+    // This function is very rudimentary
+    // FlowScape already has a much better painting system
+    private void Paint(Vector3 mousePosition)
     {
-        ShiftLayer(activeLayer, -1);
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mousePosition);
+        Bounds bounds = groundObject.GetComponent<Renderer>().bounds;
+        Vector2 mouse01 = new Vector2(
+            (mouseWorld.x - bounds.min.x) / (bounds.max.x - bounds.min.x),
+            (mouseWorld.z - bounds.min.z) / (bounds.max.z - bounds.min.z)
+        );
+
+        float brushRadius = 0.15f;
+        Color[] paintArray = activeLayer.mask.GetPixels();
+        for (int i = 0; i < paintArray.Length; i++)
+        {
+            Vector2 pixel = new Vector2(1 - (i % 128) / 128f, 1 - (i / 128) / 128f);
+            float grayscale = Mathf.Min((brushRadius - Mathf.Min(Vector2.Distance(mouse01, pixel), brushRadius)) * (1 / brushRadius) * 1.3f, 1f);
+            if(paintingAdd)
+            {
+                paintArray[i] = MaxColor(paintArray[i], ColorFromGrayscale(grayscale));
+            }
+            if(paintingSubstract)
+            {
+                paintArray[i] = MinColor(paintArray[i], ColorFromGrayscale(1-grayscale));
+            }
+        }
+        activeLayer.mask.SetPixels(paintArray);
+        activeLayer.mask.Apply();
     }
 
-    public void MoveActiveLayerDown()
+    private int GetNumberOfLayers()
     {
-        ShiftLayer(activeLayer, +1);
+        return layersList.transform.childCount;
+    }
+
+    private void RefreshTerrainShader()
+    {
+        // Select the most optimal shader for the number of layers we currently have
+        // AFAIK this is necessary unless we want to compile shaders on the fly
+        groundMaterial.shader = Shader.Find("Custom/" + GetNumberOfLayers() + "Layers");
+    }
+
+    private Color ColorFromGrayscale(float grayscale)
+    {
+        return new Color(grayscale, grayscale, grayscale);
+    }
+
+    private Color MinColor(Color color1, Color color2)
+    {
+        return new Color(
+            Mathf.Min(color1.r, color2.r),
+            Mathf.Min(color1.g, color2.g),
+            Mathf.Min(color1.b, color2.b)
+        );
+    }
+
+    private Color MaxColor(Color color1, Color color2)
+    {
+        return new Color(
+            Mathf.Max(color1.r, color2.r),
+            Mathf.Max(color1.g, color2.g),
+            Mathf.Max(color1.b, color2.b)
+        );
     }
 
     public void SetPaintTexture(int layerIndex, Texture2D texture)

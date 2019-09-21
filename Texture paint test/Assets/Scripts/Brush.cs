@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class Brush : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        // Move brush to cursor
         Vector3 mouseToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector3(mouseToWorld.x, 1, mouseToWorld.z);
+        transform.position = new Vector3(mouseToWorld.x, 0.1f, mouseToWorld.z);
     }
 }

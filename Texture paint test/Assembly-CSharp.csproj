@@ -62,7 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ScriptableObjects\SO_ShaderLibrary.cs" />
     <Compile Include="Assets\ScriptableObjects\SO_TextureLibrary.cs" />
     <Compile Include="Assets\Scripts\Brush.cs" />
     <Compile Include="Assets\Scripts\TexPaintLayer.cs" />
